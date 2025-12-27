@@ -15,27 +15,25 @@ Link bài lab :http://fickle-tempest.picoctf.net:53187
 
 ![alt text](images/image.png)
 
-Trang web hiện ra 1 trong login, điều đầu tiên nghĩ đến là lỗi SQL Injection.
+Trang web hiện ra 1 trong login đơn giản.
 
-Thử nhập `admin ' -- ` vào ô username và nhập bất kỳ vào ô password.
+Tôi thử đăng nhập với các thông tin ngẫu nhiên như `user: test` / `pass: test`. Kết quả: **Đăng nhập thành công!** Tuy nhiên, trang web hiển thị thông báo: **"No flag for you"**.
 
-**Kết quả:**
-
-Login thành công!
+Điều này cho thấy trang web không kiểm tra chặt chẽ thông tin đăng nhập (Authentication), mà vấn đề nằm ở việc phân quyền (Authorization) sau khi đăng nhập.
 
 ## 3. Vulnerability Analysis
 
-Tuy login thành công nhưng hiện ra dòng chữ **No flag for you**.
-
-Có lẽ login được nhưng chưa phải là admin.
+Mặc dù đã đăng nhập được nhưng tôi vẫn chưa thấy Flag. Tôi nghi ngờ hệ thống phân biệt quyền hạn giữa người dùng thường và admin thông qua một cơ chế lưu trữ ở phía Client, ví dụ như Cookies.
 
 ## 4. Exploitation
 
-Mở Devtools kiểm tra Cookies.
+Mở Devtools(F12) -> Application -> Cookies.
 
 ![alt text](images/image2.png)
 
-Ở dòng `admin = false` sửa lại thành `admin = True` và reload lại trang (F5).
+Tại đây, cookie `admin` đang có giá trị là `False`. Đây chính là lỗ hổng **Insecure Cookie Handling**: Server tin tưởng giá trị admin do client gửi lên để xác định quyền hạn.
+
+Tôi tiến hành sửa giá trị cookie admin từ `False` thành `True` và tải lại trang (F5).
 
 **Kết quả:**
 ![alt text](images/image3.png)
