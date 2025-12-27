@@ -24,7 +24,7 @@ Tôi thử kiểm tra phản hồi của server bằng cách nhập các giá tr
 Tiếp theo, tôi thử kiểm tra lỗi SQL Injection bằng cách nhập ký tự đặc biệt `'` vào trường `Username`.
 
 - **Input:** `'`
-- **Output:** Trang web trả về lỗi SQL (SQL Error) hoặc 500 Internal Server Error.
+- **Output:** Trang web trả về lỗi SQL query.
 
 ![SQL Error](images/image2.png)
 
