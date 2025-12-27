@@ -69,7 +69,7 @@ Thực hiện: Nhập payload vào ô `username` và `password` bất kỳ.
 
 Để ngăn chặn lỗi SQL Injection tương tự, nhà phát triển cần tuân thủ nguyên tắc **"Never trust user input"**. Cụ thể:
 
-### 1.Sử dụng **Prepared Statements** (Câu lệnh chuẩn bị): Thay vì nối chuỗi trực tiếp, hãy sử dụng **Parameterized Queries**. Database sẽ coi đầu vào của người dùng chỉ là dữ liệu thuần túy, không phải là mã lệnh thực thi.
+    1.Sử dụng **Prepared Statements** (Câu lệnh chuẩn bị): Thay vì nối chuỗi trực tiếp, hãy sử dụng **Parameterized Queries**. Database sẽ coi đầu vào của người dùng chỉ là dữ liệu thuần túy, không phải là mã lệnh thực thi.
 
     Ví dụ (PHP/PDO):
 
@@ -78,4 +78,4 @@ $stmt = $pdo->prepare('SELECT * FROM users WHERE username = :username AND passwo
 $stmt->execute(['username' => $input_user, 'password' => $input_pass]);
 ```
 
-### 2.**Input Validation**: Kiểm tra và lọc đầu vào để đảm bảo đúng định dạng mong đợi (ví dụ: chỉ cho phép ký tự chữ và số).
+    2.**Input Validation**: Kiểm tra và lọc đầu vào để đảm bảo đúng định dạng mong đợi (ví dụ: chỉ cho phép ký tự chữ và số).
