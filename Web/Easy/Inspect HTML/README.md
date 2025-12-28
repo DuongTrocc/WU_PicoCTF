@@ -1,4 +1,4 @@
-# picoCTF 2022
+# picoCTF 2022 - Inspect HTML
 
 **Category** Web Exploitation
 
