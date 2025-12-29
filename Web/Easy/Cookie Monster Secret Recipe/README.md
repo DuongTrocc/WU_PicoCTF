@@ -20,7 +20,7 @@ Tìm thấy: `Name`  : `secret_recipe`
 Đây là 1 đoạn `Base64`, cần decode để tìm ra điều gì đang ẩn giấu trong `secret_recipe`.
 Có thể decode bằng `CyberChef` hoặc `base64decode.org`.
 
-🎉*Kết quả Decode:*picoCTF{c00k1e_m0nster_l0ves_c00kies_A6FA07D8}.
+🎉 **Kết quả Decode:**picoCTF{c00k1e_m0nster_l0ves_c00kies_A6FA07D8}.
 
-**Flag:**picoCTF{c00k1e_m0nster_l0ves_c00kies_A6FA07D8}
+**Flag:** picoCTF{c00k1e_m0nster_l0ves_c00kies_A6FA07D8}
 
