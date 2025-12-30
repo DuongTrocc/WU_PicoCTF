@@ -29,10 +29,10 @@ Do đó đây là 1 chuỗi `base64` đã được `URL Encoded`.
 
 Để lấy `flag` ta cần decode giá trị này. Có 2 cách thực hiện :
 
-## Cách 1 : Sử dụng công cụ Online (CyberChef).
+### Cách 1 : Sử dụng công cụ Online (CyberChef).
 Copy giá trị vào CyberChef và sử dụng recipe: `URL Decode` -> `From Base64`.
 
-## Cách 2 : Sử dụng Linux Terminal
+### Cách 2 : Sử dụng Linux Terminal
 Nếu đang dùng Linux hoặc WSL có thể decode bằng lệnh : 
 
 ``` bash
