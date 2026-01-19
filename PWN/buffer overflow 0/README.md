@@ -1,7 +1,9 @@
 # 🚩 PicoCTF 2019: Buffer Overflow 0
 
 **Category:** Binary Exploitation
+
 **Level:** Medium (Thực tế: Easy)
+
 **Date:** 2026-01-19
 
 ---
@@ -11,10 +13,10 @@
 Bài này cung cấp cho ta một file thực thi (`vuln`) và mã nguồn C (`vuln.c`).
 Sau khi tải về và đọc code, mình nhận thấy cấu trúc chương trình như sau:
 
-* Chương trình nhận input từ người dùng thông qua hàm `gets()` (hoặc tương đương) và đưa vào biến global `buf1`.
-* Biến `buf1` có kích thước được cấp phát là **[...]** bytes.
+* Chương trình nhận input từ người dùng thông qua hàm `gets()` và đưa vào biến global `buf1`.
+* Biến `buf1` có kích thước được cấp phát là **[100]** bytes.
 * Sau đó, hàm `vuln()` được gọi. Tại đây, chương trình sử dụng hàm `strcpy` để copy dữ liệu từ `buf1` sang một biến cục bộ tên là `buf2`.
-* Vấn đề nằm ở chỗ: `buf2` chỉ có kích thước **[...]** bytes.
+* Vấn đề nằm ở chỗ: `buf2` chỉ có kích thước **[16]** bytes.
 
 > **Nhận định:** Hàm `strcpy` không kiểm tra độ dài dữ liệu nguồn. Nếu ta nhập input dài hơn kích thước của `buf2`, dữ liệu sẽ bị ghi tràn ra ngoài vùng nhớ được cấp phát cho `buf2` trên Stack.
 
@@ -26,14 +28,14 @@ Khi `buf2` bị ghi tràn, dữ liệu dư thừa sẽ ghi đè lên các giá t
 
 Tuy nhiên, điều đặc biệt của bài này nằm ở hàm xử lý tín hiệu (Signal Handler).
 Trong hàm `main`, mình thấy dòng code đăng ký signal:
-`signal(SIGSEGV, [...]);`
+`signal(SIGSEGV, sigsegv_handler);`
 
 Điều này có nghĩa là:
 1.  Bình thường: Khi chương trình bị lỗi bộ nhớ (SIGSEGV) -> Chương trình tắt ngay lập tức.
-2.  Ở bài này: Khi bị lỗi SIGSEGV -> Chương trình sẽ nhảy vào hàm **`[...]`** để xử lý.
+2.  Ở bài này: Khi bị lỗi SIGSEGV -> Chương trình sẽ nhảy vào hàm **`sigsegv_handler`** để xử lý.
 
 Khi mình xem nội dung hàm handler này, mình thấy nó thực hiện lệnh:
-**`[...]`**
+**`printf("%s\n", flag);`**
 
 -> **Chiến thuật:** Mục tiêu của chúng ta không phải là điều khiển dòng thực thi phức tạp (như ROP chain), mà chỉ đơn giản là **làm cho chương trình bị Crash**. Khi Crash, hàm handler sẽ tự động in ra Flag.
 
