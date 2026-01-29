@@ -1,13 +1,13 @@
 asm1:
-	<+0>:	endbr32 
+	<+0>:	endbr32 							;input = 0x295(661)
 	<+4>:	push   ebp
 	<+5>:	mov    ebp,esp
-	<+7>:	cmp    DWORD PTR [ebp+0x8],0x3ff
+	<+7>:	cmp    DWORD PTR [ebp+0x8],0x3ff	;(1040)
 	<+14>:	jg     0x11d6 <asm1+41>
 	<+16>:	cmp    DWORD PTR [ebp+0x8],0x295
 	<+23>:	jne    0x11ce <asm1+33>
 	<+25>:	mov    eax,DWORD PTR [ebp+0x8]
-	<+28>:	add    eax,0xd
+	<+28>:	add    eax,0xd						; 0x295 + 0xd = 0x2A2(674)
 	<+31>:	jmp    0x11ed <asm1+64>
 	<+33>:	mov    eax,DWORD PTR [ebp+0x8]
 	<+36>:	sub    eax,0xd
